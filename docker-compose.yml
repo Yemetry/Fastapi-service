@@ -1,0 +1,11 @@
+version: '3'
+services:
+  tz:
+    build: .
+    container_name: tz
+    volumes:
+      - ./app:/app
+    ports:
+      - "80:80"
+
+
