@@ -9,6 +9,8 @@ app = FastAPI()
 @app.get("/users/{user_id}")
 async def users(id: int):
     user = sel_add_method.get_id(id)
+    if user is None:
+        return None
     return {'id': user.id, 'login': user.login, 'email': user.email, 'phone': user.phone}
 
 
