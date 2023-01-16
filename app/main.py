@@ -1,3 +1,4 @@
+import uvicorn
 from fastapi import FastAPI
 
 import sel_add_method, valid
@@ -15,3 +16,6 @@ async def users(id: int):
 async def check(user: valid.User):
     new_user = sel_add_method.add_user(user)
     return {'id': new_user.id}
+
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="127.0.0.1", port=8000,reload=True)
