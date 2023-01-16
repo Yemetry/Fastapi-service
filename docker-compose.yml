@@ -6,6 +6,5 @@ services:
     volumes:
       - ./app:/app
     ports:
-      - "82:82"
-
+      - "82:80"
 
