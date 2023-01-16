@@ -4,6 +4,7 @@ from sqlalchemy.orm import declarative_base
 Base = declarative_base()
 
 
+# this class initializes the columns I need and sets the name of the table
 class User(Base):
     __tablename__ = "users"
 

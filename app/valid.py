@@ -2,7 +2,7 @@ from pydantic import BaseModel, validator
 import re
 
 
-"""This class will be used to validate incoming json files on post request with path '/check ' """
+# This class is used to validate data from the user
 class User(BaseModel):
     email: str
     login: str
@@ -15,16 +15,18 @@ class User(BaseModel):
         if emailrer:
             return val
         else:
-            raise ValueError('Phone should be in the form +79XXXXXXXXX')
+            raise ValueError('Your email is not entered correctly, enter your email using @ and "."')
 
+    # validation of phone
     @validator('phone')
     def valid_phone(cls, val):
         rer = re.match(r'^(\+79)+(\d{9})$', val)
         if rer:
             return val
         else:
-            raise ValueError('Phone should be in the form +79XXXXXXXXX')
+            raise ValueError('You entered the data incorrectly, you must enter +79XXXXXXXXX')
 
+    # validation of login
     @validator('login')
     def valid_login(cls, val):
         if 3 <= len(val) <= 20:
@@ -32,6 +34,6 @@ class User(BaseModel):
             if loginrer:
                 return val
             else:
-                raise ValueError('The login must include only the characters a-z 0-9 and .')
+                raise ValueError('Your login is entered incorrectly, enter your login using the characters a-z, 0-9 and "."')
         else:
-            raise ValueError('The login must include only the characters a-z 0-9 and .')
+            raise ValueError('Your login is entered incorrectly, enter your login using the characters a-z, 0-9 and "."')

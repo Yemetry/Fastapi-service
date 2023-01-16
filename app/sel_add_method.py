@@ -6,6 +6,8 @@ import models, valid
 models.Base.metadata.create_all(bind=engine)
 
 
+# This method opens a connection with the database then there is a search by user id then it returns the full user
+# data namely phone email and login
 def get_id(id: int):
     db = sessionmaker(autocommit=False, autoflush=False, bind=engine)
     session = db()
@@ -13,6 +15,7 @@ def get_id(id: int):
     return user
 
 
+# adding a new user after receiving data recording and saving to the database
 def add_user(user: valid.User):
     db = sessionmaker(autocommit=False, autoflush=False, bind=engine)
     session = db()
